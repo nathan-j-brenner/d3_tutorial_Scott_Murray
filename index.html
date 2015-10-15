@@ -40,23 +40,31 @@
         d3 binds data input values to elements in the DOM
         */
         
-        var dataset = [5, 10, 15, 20, 25];
+        var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+                24, 18, 25, 9, 3 ];
+        var random = []
+        for (var i = 0; i<25; i++){
+            var newNumber = Math.round(Math.random() * 30);
+            random.push(newNumber);
+        }
+        console.log(random);
         
-        d3.select('body')
-            .selectAll('p') //selects all p elements in the dom, which right now it returns an empty selection
-            .data(dataset) //counts and parses the values of dataset
-            .enter()//create a new data bound placeholder element
-            .append('p') //placeholder element becomes a paragraph element
-            .text(function(d){ return "I can count up to " + d; }) //d is set to the corresponding value in yoru original data set, given the current element at hand
-            .style('color', function(d){
-                if( d > 15){
-                    return 'red';
-                } else {
-                    return 'black';
-                }
-            });
+        // d3.select('body')
+        //     .selectAll('p') //selects all p elements in the dom, which right now it returns an empty selection
+        //     .data(dataset) //counts and parses the values of dataset
+        //     .enter()//create a new data bound placeholder element
+        //     .append('p') //placeholder element becomes a paragraph element
+        //     .text(function(d){ return "I can count up to " + d; }) //d is set to the corresponding value in yoru original data set, given the current element at hand
+        //     .style('color', function(d){
+        //         if( d > 15){
+        //             return 'red';
+        //         } else {
+        //             return 'black';
+        //         }
+        //     });
         d3.select('body').selectAll('div')
-            .data(dataset)
+            .data(random)
             .enter()
             .append('div')
             .attr('class', 'bar')
