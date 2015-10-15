@@ -38,7 +38,14 @@
             .data(dataset) //counts and parses the values of dataset
             .enter()//create a new data bound placeholder element
             .append('p') //placeholder element becomes a paragraph element
-            .text(dataset);
+            .text(function(d){ return "I can count up to " + d; }) //d is set to the corresponding value in yoru original data set, given the current element at hand
+            .style('color', function(d){
+                if( d > 15){
+                    return 'red';
+                } else {
+                    return 'black';
+                }
+            });
         
     </script>
     
