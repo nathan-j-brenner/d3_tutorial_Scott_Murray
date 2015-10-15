@@ -3,6 +3,15 @@
     <meta charset="UTF-8">
     <title>D3 Test</title>
     <script src="d3/d3.js"></script>
+    <style>
+        .bar {
+            display: inline-block;
+            width: 20px;
+            /*height: 75px;*/
+            background-color: teal;
+            margin-right: 1%;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -46,8 +55,17 @@
                     return 'black';
                 }
             });
-        
+        d3.select('body').selectAll('div')
+            .data(dataset)
+            .enter()
+            .append('div')
+            .attr('class', 'bar')
+            .style('height', function(d){
+                var barheight = d*5;
+                return barheight + "px";
+            });
     </script>
-    
+    <!--<div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
+    <div class="bar"></div>-->
 </body>
 </html>
