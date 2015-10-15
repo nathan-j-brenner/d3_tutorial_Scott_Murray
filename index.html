@@ -48,7 +48,6 @@
             var newNumber = Math.round(Math.random() * 30);
             random.push(newNumber);
         }
-        console.log(random);
         
         // d3.select('body')
         //     .selectAll('p') //selects all p elements in the dom, which right now it returns an empty selection
@@ -75,5 +74,18 @@
     </script>
     <!--<div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
     <div class="bar"></div>-->
+    <svg width='500' height='50'>
+        <!--<rect x="0" y='0' width= '500' height='20'/>
+        <circle cx='250' cy='25' r='25'/>-->
+        <!--cx and cy = center x and y position, r = radius
+        ellipse expects rx and ry-->
+        <ellipse cx='250' cy='25' rx='100' ry='25'/>
+        <line x1='0' y1='0' x2='500' y2='50' stroke='black'/>
+    </svg> <!-- px is assumed as unit of measurement -->
+    <!--
+        simple svg shapes: rect, circle, ellipse, line, text, path
+        pixel-based coordinates system: 0,0 is top left corner of the drawing space
+        Increasing x value moves to the right, increasing y value moves down
+    -->
 </body>
 </html>
