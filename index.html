@@ -3,7 +3,13 @@
     <meta charset="UTF-8">
     <title>D3 Test</title>
     <script src="d3/d3.js"></script>
+
     <style>
+        body{
+            background-color: #6699FF;
+            color: white;
+            text-align: center;
+        }
         .bar {
             display: inline-block;
             width: 20px;
@@ -11,156 +17,53 @@
             background-color: teal;
             margin-right: 1%;
         }
+        .container{
+            border: 1px solid black;
+            margin: 10%;
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
-    <script>
-        //chaining method
-        // d3.select('body')
-        //     .append('p')
-        //     .text('New paragraph!');
-            
-        //chainless method
-        // var body = d3.select('body');
-        // var p = body.append('p');
-        // p.text('A paragraph made without chaining');
-        
-        /*
-        d3: references the d3 object so we can access its methods
-            
-        select method: selects a single element from the DOM using CSS selector syntax
-        append: create a new element and append the following text to that element
-        
-        chaining: perform multiple actions on one line of code by appending .method
-        order matters for chaining
-        */
-        
-        /*
-        data visualization: the process of mapping data to visuals
-        d3 binds data input values to elements in the DOM
-        */
-        
-        var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
-                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
-                24, 18, 25, 9, 3 ];
-        var random = []
-        for (var i = 0; i<25; i++){
-            var newNumber = Math.round(Math.random() * 30);
-            random.push(newNumber);
-        }
-        
-        // d3.select('body')
-        //     .selectAll('p') //selects all p elements in the dom, which right now it returns an empty selection
-        //     .data(dataset) //counts and parses the values of dataset
-        //     .enter()//create a new data bound placeholder element
-        //     .append('p') //placeholder element becomes a paragraph element
-        //     .text(function(d){ return "I can count up to " + d; }) //d is set to the corresponding value in yoru original data set, given the current element at hand
-        //     .style('color', function(d){
-        //         if( d > 15){
-        //             return 'red';
-        //         } else {
-        //             return 'black';
-        //         }
-        //     });
-        // d3.select('body').selectAll('div')
-        //     .data(random)
-        //     .enter()
-        //     .append('div')
-        //     .attr('class', 'bar')
-        //     .style('height', function(d){
-        //         var barheight = d*5;
-        //         return barheight + "px";
-        //     });
-    </script>
-    <!--<div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
-    <div class="bar"></div>-->
-    <!---<svg width='500' height='50'>
-        <!--<rect x="0" y='0' width= '500' height='20'/>
-        <circle cx='250' cy='25' r='25'/>-->
-        <!--cx and cy = center x and y position, r = radius
-        ellipse expects rx and ry-->
-        <!--<ellipse cx='250' cy='25' rx='100' ry='25'/>
-        <line x1='0' y1='0' x2='500' y2='50' stroke='black'/>
-    </svg>--> <!-- px is assumed as unit of measurement -->
+    <h1>examples of d3</h1>
+    <p>The content comes from examples from Scott Murray's <em>Interactive Data Visualization</em></p>
+    <div class="paragraph container">
+        <h2>Creating a single paragraph element with d3</h2>
+    </div>
+    <div class="paragraphs container">
+        <h2>Using data from an array to create multiple paragraphs</h2>
+    </div>
+    <div class="randomBars container">
+        <h2>Creating a barchart with random values</h2>
+    </div>
+    <div class="basicSvgs container">
+        <h2>creating some different svg shapes</h2>
+        <div style="display: inline-block; width: 20px; height: 75px; background-color: teal;"></div>
+        <div class="bar"></div>
+        <svg width='500' height='50'>
+            <rect x="0" y='0' width= '500' height='20'/>
+            <circle cx='250' cy='25' r='25'/>
+            <!--cx and cy = center x and y position, r = radius
+            ellipse expects rx and ry-->
+            <ellipse cx='250' cy='25' rx='100' ry='25'/>
+            <line x1='0' y1='0' x2='500' y2='50' stroke='black'/>
+        </svg> <!-- px is assumed as unit of measurement -->
     <!--
         simple svg shapes: rect, circle, ellipse, line, text, path
         pixel-based coordinates system: 0,0 is top left corner of the drawing space
         Increasing x value moves to the right, increasing y value moves down
     -->
-    <script>
-        // var dataset = [5, 10, 15, 20, 25];
-        // var w = 500;
-        // var h = 50;
-        // var svg = d3.select('body')
-        //             .append('svg')
-        //             .attr('width', w)
-        //             .attr('height', h);
-        // var circle = svg.selectAll('circle')
-        //                 .data(dataset)
-        //                 .enter()
-        //                 .append('circle');
-        // circle.attr('cx', function(d, i){ //i = index of d
-        //             return (i*50)+25;
-        //         })
-        //         .attr('cy', h/2)
-        //         .attr('r', function(d){
-        //             return d;
-        //         })
-        //         .attr('fill', 'yellow')
-        //         .attr('stroke', 'orange')
-        //         .attr('stroke-width', function(d){
-        //             return d/2;
-        //         });
-                //effective data visualization: choose appropriate mapping so the visual expression of your data is understandable and useful for the viewer
-        var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
-        
-        var w = 500;
-        var h = 100;
-        var barPadding = 1;
-        
-        var svg = d3.select('body')
-                    .append('svg')
-                    .attr('width', w)
-                    .attr('height', h);
-                    
-        svg.selectAll('rect')
-            .data(dataset)
-            .enter()
-            .append('rect')
-            .attr('x', function(d, i){ 
-                return i * (w/dataset.length); 
-            })
-            .attr('y', function(d){
-                return h - (d*4);
-            })
-            .attr('width', w / dataset.length - barPadding)
-            .attr('height', function(d){
-                return d * 4;
-            })
-            .attr('fill', function(d){
-                return "rgb(0, 0, " + (d*10) + ")";
-            });
-            
-        //labels
-        svg.selectAll('text')
-            .data(dataset)
-            .enter()
-            .append('text')
-            .text(function(d){
-                return d;
-            })
-            .attr('x', function(d, i){ 
-                return i * (w/dataset.length) + (w/dataset.length - barPadding) / 2; 
-            })
-            .attr('y', function(d){
-                return h - (d*4) + 14;
-            })
-            .attr('font-family', 'sans-serif')
-            .attr('font-size', '11px')
-            .attr('fill', 'white')
-            .attr('text-anchor', 'middle');
-            
-            //duel encoding: the same data value is encoded in two different visual properties (height and color here)
-    </script>
+    </div>
+    <div class="circles container">
+        <h2>Creating some circle svg elements</h2>
+    </div>
+    <div class="barChart container">
+        <h2>Creating a bar chart with rect svgs</h2>
+    </div>
+    <script src="d3/paragraphs.js"></script>
+    <script src="barChartDivs.js"></script>
+    <script src="d3/circles.js"></script>
+    <script src="d3/barchart.js"></script>
 </body>
 </html>
